@@ -1,20 +1,20 @@
-from math_operations import basic_operations, power_operations, apply_operations
-# promots the user to enter the numbers
-a = int(input("Enter the first number:"))
-b = int(input("Enter the second number:"))
-c = int(input("enter the amount of modulo:"))
-result_basic = basic_operations(a, b)
-print("Basic operations result:", result_basic)
+def basic_operations(a, b):
+        return f"Error: {str(e)}"
 
-result_power = power_operations(a, b)
-print("Power Operation Result:", result_power)
 
-result_power_modulo = power_operations(a, b, modulo=c)
-print("Power Operation Result with modulo:", result_power_modulo)
+def power_operation(base, exponent, **kwargs):
+    try:
+        result = base ** exponent
+        if 'modulo' in kwargs:
+            result %= kwargs['modulo']
+        return result
+    except Exception as e:
+        return f"Error: {str(e)}"
 
-operations = [
-    (lambda x, y: x + y, (a, b))
-    , (lambda x, y: x * y, (a, b))
-]
-result_apply = apply_operations(operations)
-print("Apply operations result:", result_apply)
+
+def apply_operations(operation_list):
+    try:
+        results = list(map(lambda x: x[0](*x[1]), operation_list))
+        return results
+    except Exception as e:
+        return f"Error: {str(e)}"
